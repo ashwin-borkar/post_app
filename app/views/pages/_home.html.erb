@@ -1,0 +1,49 @@
+
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+  border-right:1px solid #bbb;
+}
+
+li:last-child {
+  border-right: none;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+</style>
+</head>
+<body>
+
+<ul>
+  <% if current_user %> 
+    <li style="float:right"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+    <li><%= link_to "Post", posts_path%></li>
+    <li><a href="#"><%= current_user.username.present? ? current_user.username : current_user.email %></a></li>
+  <% else %>
+    <li><%= link_to "Sign In", new_user_session_path %></li>
+    <li><%= link_to  "Sign Up", new_user_registration_path %></li>
+  <% end %> 
+</ul>
+
